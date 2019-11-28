@@ -26,17 +26,15 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import org.litepal.LitePal;
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
+
+import static com.lenovo.myoucapp.LoginMainActivity.post_userid;
 
 public class UploadItemActivity extends AppCompatActivity {
     public static final int TAKE_PHOTO = 1;
@@ -93,7 +91,7 @@ public class UploadItemActivity extends AppCompatActivity {
                // cv.put("pic", os.toByteArray());
                 db.insert("iteminfo",null,values);
                 Toast.makeText(getApplicationContext(), "发布成功", Toast.LENGTH_SHORT).show();
-                MyItemActivity.actionStart(UploadItemActivity.this);
+                MyItems.actionStart(UploadItemActivity.this);
             }
         });
         takePhoto.setOnClickListener(new View.OnClickListener() {

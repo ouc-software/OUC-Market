@@ -81,8 +81,9 @@ public class LoginMainActivity extends Activity {
                 Toast.makeText(getApplicationContext(), "用户密码错误！", Toast.LENGTH_SHORT).show();
             }
             else{
+                //由登录界面跳转到“上传物品界面”--到时候再改成商场或我的
                 Toast.makeText(getApplicationContext(), "登录成功", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(LoginMainActivity.this,main_page.class);
+                Intent intent = new Intent(LoginMainActivity.this,UploadItemActivity.class);
                 post_userid=user;
                 startActivity(intent);
             }

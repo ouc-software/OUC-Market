@@ -24,9 +24,9 @@ public class RegisterMainActivity extends AppCompatActivity {
     String password2=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_main);
-
         User=(EditText)findViewById(R.id.user);
         Password1=(EditText)findViewById(R.id.password1);
         Password2=(EditText)findViewById(R.id.password2);
