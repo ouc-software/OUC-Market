@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,9 +34,12 @@ public class RegisterMainActivity extends AppCompatActivity {
         button_register=(Button)findViewById(R.id.register);
         button_return=(Button)findViewById(R.id.toReturn);
         //点击注册
+        Log.d("111","RegisterMainActivity");
         button_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Intent intent2 = new Intent(RegisterMainActivity.this,LoginMainActivity.class);
+                //startActivity(intent2);
                 user=User.getText().toString();
                 password1=Password1.getText().toString();
                 password2=Password2.getText().toString();
@@ -65,12 +69,13 @@ public class RegisterMainActivity extends AppCompatActivity {
 
     //检查学号是否存在
     private void checkUser(String user,String pwd){
+
         DatabaseHelper dbhelper = new DatabaseHelper(this);
         SQLiteDatabase db=dbhelper.getReadableDatabase();
         try{
             String sql="SELECT * FROM users WHERE userId=?";
             Cursor cursor=db.rawQuery(sql,new String[]{user});
-            if(cursor.getCount()>0){
+            if(cursor.getCount()>0){//行数>0
                 Toast.makeText(getApplicationContext(), "学号已存在！", Toast.LENGTH_SHORT).show();
             }
             else{

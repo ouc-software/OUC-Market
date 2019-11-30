@@ -28,8 +28,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "kind varchar(100)," +
                 "info varchar(1000)," +
                 "price varchar(100)," +
-                "image blobid integ," +
-                /*"time DATETIME," +*/
+                "image blob," +
+                "time DATETIME," +
                 "contact varchar(50))");
         //评论者账号userId，评论商品编号itemId，评论内容comment，评论时间time
         db.execSQL("create table if not exists comments(" +

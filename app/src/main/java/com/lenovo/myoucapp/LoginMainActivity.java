@@ -53,9 +53,6 @@ public class LoginMainActivity extends Activity {
                     Toast.makeText(getApplicationContext(), "请输入用户密码！", Toast.LENGTH_SHORT).show();
                 }
                 checkUser(user,password);
-
-
-
             }
         });
 
@@ -73,17 +70,17 @@ public class LoginMainActivity extends Activity {
 
     private void checkUser(String user,String password){
         DatabaseHelper dbhelper = new DatabaseHelper(this);
-        SQLiteDatabase db=dbhelper.getReadableDatabase();
+        SQLiteDatabase db = dbhelper.getReadableDatabase();
         try{
             String sql="SELECT * FROM users WHERE userId=? and passWord=?";
             Cursor cursor=db.rawQuery(sql,new String[]{user,password});
-            if(cursor.getCount()==0){
+            if(cursor.getCount()==0){//没有这一条记录
                 Toast.makeText(getApplicationContext(), "用户密码错误！", Toast.LENGTH_SHORT).show();
             }
             else{
-                //由登录界面跳转到“上传物品界面”--到时候再改成商场或我的
+                //由登录界面跳转到“Myself界面”
                 Toast.makeText(getApplicationContext(), "登录成功", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(LoginMainActivity.this,UploadItemActivity.class);
+                Intent intent = new Intent(LoginMainActivity.this,MyselfActivity.class);
                 post_userid=user;
                 startActivity(intent);
             }

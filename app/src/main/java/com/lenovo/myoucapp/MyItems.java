@@ -13,7 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import static com.lenovo.myoucapp.LoginMainActivity.post_userid;
 public class MyItems extends AppCompatActivity {
     String TABLENAME = "iteminfo";
     byte[] imagedata;
@@ -35,6 +35,7 @@ public class MyItems extends AppCompatActivity {
         Log.i("商品的id是",intent.getStringExtra("id"));
         if (cursor.moveToFirst()){
             while (!cursor.isAfterLast()){
+
                 imagedata = cursor.getBlob(6);
                 imagebm = BitmapFactory.decodeByteArray(imagedata, 0, imagedata.length);
                 image.setImageBitmap(imagebm);//把图片从数据库加载到image

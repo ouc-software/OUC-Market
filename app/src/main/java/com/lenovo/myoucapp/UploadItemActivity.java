@@ -33,6 +33,8 @@ import android.widget.Toast;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static com.lenovo.myoucapp.LoginMainActivity.post_userid;
 
@@ -65,6 +67,7 @@ public class UploadItemActivity extends AppCompatActivity {
         Button finish_upload = (Button) findViewById(R.id.finish);
         Button chooseFromAlbum = (Button) findViewById(R.id.choose_photo);
         Button takePhoto = (Button) findViewById(R.id.take_photo);
+        final SimpleDateFormat formatter = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss ");
         String[] ctype = new String[]{"生活用品", "学习用品", "电子产品", "体育用品"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ctype);  //创建一个数组适配器
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);     //设置下拉列表框的下拉选项样式
@@ -76,6 +79,8 @@ public class UploadItemActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v){ //上传商品信息插入到数据库
+                Date curDate = new Date(System.currentTimeMillis());
+                String time = formatter.format(curDate);
                 EditText title=(EditText)findViewById(R.id.item_name);
                 EditText price=(EditText)findViewById(R.id.item_price);
                 EditText intro=(EditText)findViewById(R.id.item_introduction);
@@ -84,6 +89,7 @@ public class UploadItemActivity extends AppCompatActivity {
                 values.put("title",title.getText().toString());
                 values.put("userId",post_userid);
                 values.put("kind", kind);
+                values.put("time",time);
                 values.put("price",price.getText().toString());
                 values.put("contact",contact.getText().toString());
                 values.put("intro",intro.getText().toString());
